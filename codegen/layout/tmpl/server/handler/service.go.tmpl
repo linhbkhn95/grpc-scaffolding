@@ -1,0 +1,31 @@
+{{$methods := .Methods }}
+{{$shortServiceName := .ShortServiceName}}
+{{$serviceAliasName := .ServiceAliasName}}
+
+package handler
+
+import (
+    "context"
+    
+    {{.ServiceAliasName}} "{{.PackageName}}"
+)
+
+type {{$shortServiceName}}Server struct {
+    {{$serviceAliasName}}.Unimplemented{{.ServiceName}}Server
+}
+
+func New{{$shortServiceName}}Server()  {{$serviceAliasName}}.{{.ServiceName}}Server{
+    return &{{ .ShortServiceName }}Server{}
+}
+
+
+//TODO: implement methods of this service.
+
+{{ range  $method := $methods}}
+{{- range  $line := $method.CommentLines}}
+// {{ $line }}
+{{- end}}
+func(s {{$shortServiceName}}Server){{ .Name }}(ctx context.Context, req *{{$serviceAliasName}}.{{ .RequestType }})(*{{$serviceAliasName}}.{{ .ReturnType }}, error){
+    return &{{$serviceAliasName}}.{{ .ReturnType }}{}, nil
+}
+{{end}}
