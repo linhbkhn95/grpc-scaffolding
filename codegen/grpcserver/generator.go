@@ -4,11 +4,12 @@ package grpcserver
 
 import (
 	"bytes"
-	"github/linhbkhn95/grpc-scaffolding/codegen/grpcserver/tmpl"
 	"log"
 	"text/template"
 
-	"github/linhbkhn95/grpc-scaffolding/codegen"
+	"github.com/linhbkhn95/grpc-scaffolding/codegen"
+
+	"github.com/linhbkhn95/grpc-scaffolding/codegen/grpcserver/tmpl"
 )
 
 const (
@@ -18,7 +19,7 @@ const (
 
 // Execute to generate code grpc server with flag.
 func Execute(serverData ServerData) error {
-	if !codegen.IsDirExisted(serverData.ServiceProtoDir) {
+	if !codegen.IsDirExisted(serverData.RPCProtoDir) {
 		log.Panic("service proto dir is not existed!")
 	}
 	t := template.New(defaultTemplateName)

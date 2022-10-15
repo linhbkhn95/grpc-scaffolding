@@ -6,7 +6,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github/linhbkhn95/grpc-scaffolding/codegen"
+	"github.com/linhbkhn95/grpc-scaffolding/codegen"
 )
 
 func (g generator) installDependence() error {
@@ -19,7 +19,7 @@ func (g generator) installDependence() error {
 
 	var processes []func() error
 	processes = append(processes, g.setPrivateRepo())
-	processes = append(processes, g.installViper(), g.installKitchen(), g.installGRPCServiceInternal())
+	processes = append(processes, g.installViper(), g.installKitchen(), g.installKitchenLogger(), g.installKitchenAppmode(), g.installKitchenGRPCMiddleware(), g.installRPCServiceInternal())
 	processes = append(processes, g.installGRPCEcosystem()...)
 	processes = append(processes, g.runGomodTidy())
 	for _, process := range processes {
@@ -59,7 +59,7 @@ func (g generator) setPrivateRepo() func() error {
 	return func() error {
 		log.Println("setting private repo ...")
 
-		err, _, stderr := codegen.Shellout("export GOPRIVATE=github.com/KyberNetwork/*")
+		err, _, stderr := codegen.Shellout("export GOPRIVATE=github.com/linhbkhn95/*")
 		if err != nil {
 			log.Printf("error: %s ,%v\n", stderr, err)
 		}
@@ -75,8 +75,8 @@ func (g generator) setPrivateRepo() func() error {
 
 func (g generator) installKitchen() func() error {
 	return func() error {
-		log.Println("installing github.com/KyberNetwork/kitchen ...")
-		err, _, stderr := codegen.Shellout("GOSUMDB=off go get github.com/KyberNetwork/kitchen ")
+		log.Println("installing github.com/linhbkhn95/golang-british ...")
+		err, _, stderr := codegen.Shellout("GOSUMDB=off go get github.com/linhbkhn95/golang-british")
 		if err != nil {
 			log.Printf("error: %s ,%v\n", stderr, err)
 		}
@@ -84,10 +84,43 @@ func (g generator) installKitchen() func() error {
 	}
 }
 
-func (g generator) installGRPCServiceInternal() func() error {
+func (g generator) installKitchenLogger() func() error {
 	return func() error {
-		log.Println("installing github.com/KyberNetwork/grpc-service ...")
-		err, _, stderr := codegen.Shellout("GOSUMDB=off go get github.com/KyberNetwork/grpc-service ")
+		log.Println("installing github.com/linhbkhn95/golang-british/logger ...")
+		err, _, stderr := codegen.Shellout("GOSUMDB=off go get github.com/linhbkhn95/golang-british/logger")
+		if err != nil {
+			log.Printf("error: %s ,%v\n", stderr, err)
+		}
+		return err
+	}
+}
+
+func (g generator) installKitchenAppmode() func() error {
+	return func() error {
+		log.Println("installing github.com/linhbkhn95/golang-british/appmode ...")
+		err, _, stderr := codegen.Shellout("GOSUMDB=off go get github.com/linhbkhn95/golang-british/appmode")
+		if err != nil {
+			log.Printf("error: %s ,%v\n", stderr, err)
+		}
+		return err
+	}
+}
+
+func (g generator) installKitchenGRPCMiddleware() func() error {
+	return func() error {
+		log.Println("installing github.com/linhbkhn95/golang-british/grpc/middleware/grpcerror ...")
+		err, _, stderr := codegen.Shellout("GOSUMDB=off go get github.com/linhbkhn95/golang-british/grpc/middleware/grpcerror")
+		if err != nil {
+			log.Printf("error: %s ,%v\n", stderr, err)
+		}
+		return err
+	}
+}
+
+func (g generator) installRPCServiceInternal() func() error {
+	return func() error {
+		log.Println("installing github.com/linhbkhn95/rpc-service ...")
+		err, _, stderr := codegen.Shellout("GOSUMDB=off go get github.com/linhbkhn95/rpc-service")
 		if err != nil {
 			log.Printf("error: %s %v\n", stderr, err)
 		}

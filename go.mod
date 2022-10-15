@@ -1,4 +1,4 @@
-module github/linhbkhn95/grpc-scaffolding
+module github.com/linhbkhn95/grpc-scaffolding
 
 go 1.18
 
