@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"text/template"
 
-	"github/linhbkhn95/grpc-scaffolding/codegen/grpcserver"
-	"github/linhbkhn95/grpc-scaffolding/codegen/layout/tmpl"
+	"github.com/linhbkhn95/grpc-scaffolding/codegen/grpcserver"
+	"github.com/linhbkhn95/grpc-scaffolding/codegen/layout/tmpl"
 )
 
 const (

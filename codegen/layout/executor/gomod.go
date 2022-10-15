@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"text/template"
 
-	"github/linhbkhn95/grpc-scaffolding/codegen/layout/tmpl"
+	"github.com/linhbkhn95/grpc-scaffolding/codegen/layout/tmpl"
 )
 
 const (
@@ -18,10 +18,10 @@ type gomodExecutor struct {
 }
 
 type gomodTmplData struct {
-	ProjectName string
+	ModuleName string
 }
 
-func NewGomodExecutor(projectName string,
+func NewGomodExecutor(moduleName string,
 	outputPath string) (*gomodExecutor, error) {
 	t := template.New(gomodTmplName)
 
@@ -33,7 +33,7 @@ func NewGomodExecutor(projectName string,
 		t:          t,
 		outputPath: outputPath,
 		tmplData: gomodTmplData{
-			ProjectName: projectName,
+			ModuleName: moduleName,
 		},
 	}, nil
 }

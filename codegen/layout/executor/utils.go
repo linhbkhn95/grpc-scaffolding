@@ -7,7 +7,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github/linhbkhn95/grpc-scaffolding/codegen"
+	"github.com/linhbkhn95/grpc-scaffolding/codegen"
 )
 
 var (
