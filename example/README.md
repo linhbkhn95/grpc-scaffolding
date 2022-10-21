@@ -1,0 +1,35 @@
+# example
+GRPC implementation for example service from definition
+https://github.com/linhbkhn95/rpc-proto/blob/master/proto/example/v1/service.proto
+
+### Prerequisite
+
+* docker-compose: for setup everything quickly
+* direnv: For manage and auto switch config on `.envrc` https://direnv.net/
+* go 1.16+ with enable module support
+
+### Application Config
+
+* Set inside `.envrc`
+
+```
+$ cat .envrc
+export LOG_ENABLE_CONSOLE=true
+```
+
+* Auto env by command `direnv allow`
+
+```
+$ direnv allow
+direnv: loading .envrc
+```
+### Run
+
+* Install: run command `GOSUMDB=off go mod download` 
+* Run server
+$ go run cmd/main.go with flags `server`
+```bash
+go run cmd/main.go server
+```
+
+
