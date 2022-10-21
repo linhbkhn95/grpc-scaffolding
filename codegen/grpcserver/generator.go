@@ -20,7 +20,10 @@ const (
 // Execute to generate code grpc server with flag.
 func Execute(serverData ServerData) error {
 	if !codegen.IsDirExisted(serverData.RPCProtoDir) {
-		log.Panic("service proto dir is not existed!")
+		defer tearDown()
+		if err := codegen.InstallServiceProto(); err != nil {
+			return err
+		}
 	}
 	t := template.New(defaultTemplateName)
 
@@ -60,4 +63,12 @@ func Execute(serverData ServerData) error {
 	}
 	log.Printf("File was generate at %s\n", serverData.OutputPath)
 	return nil
+}
+
+func tearDown() {
+	log.Println("remove service-proto folder")
+	err, _, _ := codegen.Shellout("rm -rf service-proto")
+	if err != nil {
+		log.Printf("error: %v\n", err)
+	}
 }

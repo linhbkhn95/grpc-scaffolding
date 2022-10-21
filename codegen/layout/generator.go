@@ -14,7 +14,7 @@ import (
 
 type TemplateData struct {
 	ProjectName      string `name:"project_name" help:"Project's Name" flag:"project-name" default:"example"`
-	ModuleName       string `name:"module_name" help:"Project's Name" flag:"module-name" default:"github.com/linhbkhn95/example"`
+	GoModuleName     string `name:"go_module_name" help:"Golang module name" flag:"go-module-name" default:"github.com/linhbkhn95/example"`
 	EnablePrometheus bool   `name:"enable_prometheus" help:"Project should inject prometheus to collect metric" flag:"enable-prometheus" default:"true"`
 	grpcserver.ServerData
 }
@@ -56,7 +56,7 @@ func NewGenerator(tmplData TemplateData) (*generator, error) {
 		return nil, err
 	}
 	gomodOutputPath := fmt.Sprintf("%s/%s", tmplData.ProjectName, "go.mod")
-	gomodExecutor, err := executor.NewGomodExecutor(tmplData.ModuleName, gomodOutputPath)
+	gomodExecutor, err := executor.NewGomodExecutor(tmplData.GoModuleName, gomodOutputPath)
 	if err != nil {
 		return nil, err
 	}
