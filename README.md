@@ -24,7 +24,7 @@ The following is Go project layout scaffold generated:
 │   │     ├── server.go
 │   ├── server.go
 ```
-if you define service proto at repo `service-proto` like:
+if you define service proto at repo `rpc-proto` like:
 
 ```proto
 ...
@@ -350,9 +350,9 @@ go: github.com/linhbkhn95/grpc-scaffolding@latest: github.com/linhbkhn95/grpc-sc
 It is really `rpc-framework` which will init project and make layout for your project. It will read `proto` file from `proto` path which defined. It include all of `GRPC` interface. So, It can generate something which you need like (`RPC` instance, handler implementation ...)
 
 Example: when run init project `example` which combine by two services `health` and `example`.
-You should run command: (should run in folder which contains `service-proto` dir)
+You should run command: (should run in folder which contains `rpc-proto` dir)
 ```
-rpc-framework --project_name=example --go_module_name=github.com/linhbkhn95/example --rpc_proto_dir=service-proto/proto --rpc_protos=health/v1/service.proto,example/v1/service.proto
+rpc-framework --project_name=example --go_module_name=github.com/linhbkhn95/example --rpc_proto_dir=rpc-proto/proto --rpc_protos=health/v1/service.proto,example/v1/service.proto
 ```
 
 When you run command above, you should see like something below.
@@ -393,14 +393,14 @@ https://github.com/linhbkhn95/grpc-scaffolding/tree/main/example
   - `rpc_protos`: list service from project grpc, default value: `health/v1/service.proto`.
   - `enable_gateway`: flag use enable gateway for server, default value: `false`.
   - `output_path`: goal path then generate, default value: `grpc_server/output/z_server_grpc.go`.
-  - `rpc_proto_dir`: Folder contain services of project, default value : `../service-proto/proto`.
+  - `rpc_proto_dir`: Folder contain services of project, default value : `../rpc-proto/proto`.
   - `enable_metric`: flag to enable metric by prometheus module. default value: `false`.
   - `enable_http`: fag to enable port http, default value: `true`.
 
 * Layout
  It will contain all of flags of `grpc_server` and add 2 flags flag is `project_name` and `go_module_name` . So, You should run command 
  ```
- rpc-framework --project_name=example --go_module_name=github.com/linhbkhn95/example --rpc_proto_dir=service-proto/proto --rpc_protos=health/v1/service.proto,example/v1/service.proto
+ rpc-framework --project_name=example --go_module_name=github.com/linhbkhn95/example --rpc_proto_dir=rpc-proto/proto --rpc_protos=health/v1/service.proto,example/v1/service.proto
  ```
 
  
